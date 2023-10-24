@@ -20,12 +20,25 @@
     os-user: cloud-user
     
   tasks:
-  - name: Transfer the script
+  - name: Backup rhsm.conf
     copy:
-      src: "/home/{{ os-user }}/rhdp-pre4rhel/pkg_fix.sh"
+      src: /etc/rhsm/rhsm.conf
+      dest: /etc/rhsm/rhsm.conf.sat-backup
+      remote_src: true
+
+  - name: Restore rhsm.conf
+    copy:
+      src: /etc/rhsm/rhsm.conf.kat-backup 
+      dest: /etc/rhsm/rhsm.conf
+      fource: true
+      remote_src: true
+
+  - name: Transfer the re-register script
+    copy:
+      src: "/home/{{ os-user }}/rhdp-pre4rhel/re-register.sh"
       dest: "/home/{{ os-user }}"
       mode: 0777
 
   - name: Execute the script
-    command: "sh /home/{{ os-user }}/pkg_fix.sh"
+    command: "sh /home/{{ os-user }}/re-register.sh"
 
