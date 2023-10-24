@@ -1,0 +1,31 @@
+---
+- name: Customize Parent Playbooks
+  hosts: localhost
+
+  tasks:
+  - name: Set guid
+    shell: uname -n | cut -c 9-13
+    register : guid
+
+  - name: Delete DEPRECATION WARNING
+    lineinfile:
+      path: /etc/ansible/ansible.cfg
+      regexp: '^#deprecation_warnings = True'
+      line: 'deprecation_warnings = False'
+    become: true
+
+- name: Transfer and execute a script.
+  hosts: all
+  vars:
+    os-user: cloud-user
+    
+  tasks:
+  - name: Transfer the script
+    copy:
+      src: "/home/{{ os-user }}/rhdp-pre4rhel/pkg_fix.sh"
+      dest: "/home/{{ os-user }}"
+      mode: 0777
+
+  - name: Execute the script
+    command: "sh /home/{{ os-user }}/pkg_fix.sh"
+
