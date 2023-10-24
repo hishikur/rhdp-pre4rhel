@@ -42,3 +42,12 @@
   - name: Execute the script
     command: "sh /home/{{ os-user }}/re-register.sh"
 
+  - name: Install SCAP
+    dnf:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - scap-security-guide
+      - openscap-scanner
+      - openscap
+      - yara

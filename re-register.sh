@@ -11,4 +11,5 @@ sudo rm -rf /var/cache/dnf
 sudo yum remove katello-ca-consumer-labsat.opentlc.com -y
 sudo subscription-manager register --org=11594663 --activationkey=tempkey
 sudo subscription-manager release --set=8.4
+sudo subscription-manager config --rhsm.manage_repos=0
 sudo insights-client --register
