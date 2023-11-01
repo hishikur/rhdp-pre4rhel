@@ -17,7 +17,7 @@
 - name: Transfer and execute a script.
   hosts: all
   vars:
-    os-user: cloud-user
+    os_user: cloud-user
     
   tasks:
   - name: Backup rhsm.conf
@@ -35,12 +35,12 @@
 
   - name: Transfer the re-register script
     copy:
-      src: "/home/{{ os-user }}/rhdp-pre4rhel/re-register.sh"
-      dest: "/home/{{ os-user }}"
+      src: "/home/{{ os_user }}/rhdp-pre4rhel/re-register.sh"
+      dest: "/home/{{ os_user }}"
       mode: 0777
 
   - name: Execute the re-register script
-    command: "sh /home/{{ os-user }}/re-register.sh"
+    command: "sh /home/{{ os_user }}/re-register.sh"
 
   - name: Turn On repository list creation
     lineinfile:
@@ -61,12 +61,12 @@
 
   - name: Transfer the insights script
     copy:
-      src: "/home/{{ os-user }}/rhdp-pre4rhel/check-insights.sh"
-      dest: "/home/{{ os-user }}"
+      src: "/home/{{ os_user }}/rhdp-pre4rhel/check-insights.sh"
+      dest: "/home/{{ os_user }}"
       mode: 0777
 
   - name: Execute the insights script
-    command: "sh /home/{{ os-user }}/check-insights.sh"
+    command: "sh /home/{{ os_user }}/check-insights.sh"
   
   - name: Turn On test scan
     lineinfile:
@@ -76,7 +76,7 @@
     become: true
 
   - name: Execute the insights script again
-    command: "sh /home/{{ os-user }}/check-insights.sh"
+    command: "sh /home/{{ os_user }}/check-insights.sh"
   
 
 
