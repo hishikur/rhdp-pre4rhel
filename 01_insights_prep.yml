@@ -25,7 +25,7 @@
   
   - name: Turn On test scan
     lineinfile:
-      path: /etc/insights-client/malware-detection-config.yml 
+      path: /etc/insights-client/malware-detection-config.yml
       regexp: 'test_scan false'
       line: 'test_scan true'
     become: true
