@@ -39,8 +39,15 @@
       dest: "/home/{{ os-user }}"
       mode: 0777
 
-  - name: Execute the script
+  - name: Execute the re-register script
     command: "sh /home/{{ os-user }}/re-register.sh"
+
+  - name: Turn On repository list creation
+    lineinfile:
+      path: /etc/rhsm/rhsm.conf
+      regexp: 'manage_repos = 0'
+      line: 'manage_repos = 1'
+    become: true
 
   - name: Install SCAP
     dnf:
@@ -51,3 +58,30 @@
       - openscap-scanner
       - openscap
       - yara
+
+  - name: Transfer the insights script
+    copy:
+      src: "/home/{{ os-user }}/rhdp-pre4rhel/check-insights.sh"
+      dest: "/home/{{ os-user }}"
+      mode: 0777
+
+  - name: Execute the insights script
+    command: "sh /home/{{ os-user }}/check-insights.sh"
+  
+  - name: Turn On test scan
+    lineinfile:
+      path: /etc/insights-client/malware-detection-config.yml 
+      regexp: 'test_scan false'
+      line: 'test_scan true'
+    become: true
+
+  - name: Execute the insights script again
+    command: "sh /home/{{ os-user }}/check-insights.sh"
+  
+
+
+
+  
+
+  
+  
