@@ -30,7 +30,7 @@
     copy:
       src: /etc/rhsm/rhsm.conf.kat-backup 
       dest: /etc/rhsm/rhsm.conf
-      fource: true
+      force: true
       remote_src: true
 
   - name: Transfer the re-register script
