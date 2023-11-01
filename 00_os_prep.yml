@@ -60,29 +60,4 @@
       - openscap
       - yara
 
-  - name: Transfer the insights script
-    copy:
-      src: "/home/{{ s_os_user }}/rhdp-pre4rhel/check-insights.sh"
-      dest: "/home/{{ t_os_user }}"
-      mode: 0777
-
-  - name: Execute the insights script
-    command: "sh /home/{{ t_os_user }}/check-insights.sh"
-  
-  - name: Turn On test scan
-    lineinfile:
-      path: /etc/insights-client/malware-detection-config.yml 
-      regexp: 'test_scan false'
-      line: 'test_scan true'
-    become: true
-
-  - name: Execute the insights script again
-    command: "sh /home/{{ t_os_user }}/check-insights.sh"
-  
-
-
-
-  
-
-  
   
