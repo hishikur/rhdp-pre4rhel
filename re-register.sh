@@ -7,7 +7,7 @@ act_KEY=tempkey
 CNT=`sudo subscription-manager identity | grep ${org_ID} | wc -l`
 
 # set os release
-ver_ID==$(. /etc/os-release && echo $VERSION_ID)
+ver_ID=$(. /etc/os-release && echo $VERSION_ID)
 
 if [ ${CNT} -ne 0 ]; then
 echo registration already done
