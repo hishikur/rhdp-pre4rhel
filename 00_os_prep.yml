@@ -60,4 +60,7 @@
       - openscap
       - yara
 
-  
+  - name: Output msg
+    debug:
+      msg: "Set SCAP policy on https://console.redhat.com/insights"
+
