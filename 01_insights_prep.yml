@@ -35,6 +35,26 @@
       regexp: 'scan_processes: false'
       line: 'scan_processes: true'
 
+  - name: Get file1
+    get_url:
+      url: https://secure.eicar.org/eicar.com
+      dest: "/home/{{ t_os_user }}/eicar.com"
+
+  - name: Get file2
+    get_url:
+      url: https://secure.eicar.org/eicar.com.txt
+      dest: "/home/{{ t_os_user }}/eicar.com.txt"
+
+  - name: Get file3
+    get_url:
+      url: https://secure.eicar.org/eicar_com.zip
+      dest: "/home/{{ t_os_user }}/eicar_com.zip"
+
+  - name: Get file4
+    get_url:
+      url: https://secure.eicar.org/eicarcom2.zip
+      dest: "/home/{{ t_os_user }}/eicarcom2.zip"
+
   - name: Execute the insights script again
     command: "sh /home/{{ t_os_user }}/check-insights.sh"
   
