@@ -12,7 +12,7 @@
       path: /etc/ansible/ansible.cfg
       regexp: '^#deprecation_warnings = True'
       line: 'deprecation_warnings = False'
-    become: true
+      state: absent
 
 - name: Transfer and execute a script.
   hosts: all
@@ -48,7 +48,7 @@
       path: /etc/rhsm/rhsm.conf
       regexp: 'manage_repos = 0'
       line: 'manage_repos = 1'
-    become: true
+      state: absent
 
   - name: Install SCAP
     dnf:
