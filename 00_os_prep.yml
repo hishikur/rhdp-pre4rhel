@@ -10,9 +10,9 @@
   - name: Delete DEPRECATION WARNING
     lineinfile:
       path: /etc/ansible/ansible.cfg
-      regexp: '^#deprecation_warnings = True'
+      regexp: '^;deprecation_warnings=True'
+#      regexp: '^#deprecation_warnings = True'
       line: 'deprecation_warnings = False'
-      state: absent
 
 - name: Transfer and execute a script.
   hosts: all
@@ -48,7 +48,6 @@
       path: /etc/rhsm/rhsm.conf
       regexp: 'manage_repos = 0'
       line: 'manage_repos = 1'
-      state: absent
 
   - name: Install SCAP
     dnf:
