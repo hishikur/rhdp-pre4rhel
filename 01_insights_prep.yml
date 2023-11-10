@@ -12,7 +12,7 @@
   vars:
     s_os_user: student
     t_os_user: ec2-user
-    
+
   tasks:
   - name: Transfer the insights script
     copy:
@@ -22,18 +22,20 @@
 
   - name: Execute the insights script
     command: "sh /home/{{ t_os_user }}/check-insights.sh"
-  
+
   - name: Turn On test scan
     lineinfile:
       path: /etc/insights-client/malware-detection-config.yml
       regexp: '^test_scan: '
       line: 'test_scan: false'
+      insertafter: '# Once verified, disable this option '
 
   - name: Turn On process scan
     lineinfile:
       path: /etc/insights-client/malware-detection-config.yml
       regexp: '^scan_processes: '
       line: 'scan_processes: true'
+      insertafter: '# When it is false, no processes are scanned '
 
   - name: Get file1
     get_url:
