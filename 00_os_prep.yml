@@ -48,7 +48,7 @@
       path: /etc/rhsm/rhsm.conf
       regexp: '^manage_repos ='
       line: 'manage_repos = 1'
-      insertafter: '# Manage '
+      insertafter: '# Manage generation of yum repositories '
 
   - name: Install SCAP
     dnf:
