@@ -11,6 +11,7 @@ ver_ID=$(. /etc/os-release && echo $VERSION_ID)
 
 if [ ${CNT} -ne 0 ]; then
 echo registration already done
+sudo insights-client --register
 exit
 fi
 #sudo cp /etc/rhsm/rhsm.conf /etc/rhsm/rhsm.conf.sat-backup
