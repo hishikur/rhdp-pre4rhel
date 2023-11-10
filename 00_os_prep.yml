@@ -46,8 +46,9 @@
   - name: Turn On repository list creation
     lineinfile:
       path: /etc/rhsm/rhsm.conf
-      regexp: 'manage_repos = 0'
+      regexp: '^manage_repos ='
       line: 'manage_repos = 1'
+      insertafter: '# Manage '
 
   - name: Install SCAP
     dnf:

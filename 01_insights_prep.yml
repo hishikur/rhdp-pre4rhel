@@ -26,13 +26,13 @@
   - name: Turn On test scan
     lineinfile:
       path: /etc/insights-client/malware-detection-config.yml
-      regexp: 'test_scan: true'
+      regexp: '^test_scan: '
       line: 'test_scan: false'
 
   - name: Turn On process scan
     lineinfile:
       path: /etc/insights-client/malware-detection-config.yml
-      regexp: 'scan_processes: false'
+      regexp: '^scan_processes: '
       line: 'scan_processes: true'
 
   - name: Get file1
@@ -57,4 +57,3 @@
 
   - name: Execute the insights script again
     command: "sh /home/{{ t_os_user }}/check-insights.sh"
-  
